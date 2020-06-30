@@ -85,8 +85,8 @@ export const login = (userData) => {
     return axios.post('/api/v1/users/auth', userData).then(res => res.data).then(token => {
       authService.saveToken(token);
       dispatch(loginSuccess());
-    }).catch((err) => {
-      dispatch(loginFailure(err.response.data.errors));
+    }).catch(({response}) => {
+      dispatch(loginFailure(response.data.errors));
     });
   }
 }
@@ -96,4 +96,8 @@ export const logout = () => {
   return {
     type: LOGOUT
   }
+}
+
+export const createBooking = (booking) => {
+  return axiosInstance.post('/bookings', booking).then(res => res.data).catch(({response}) => Promise.reject(response.data.errors));
 }
