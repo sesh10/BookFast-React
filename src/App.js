@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Header from 'components/shared/Header';
 import RentalListing from 'components/rental/rental-listing/RentalListing';
 import RentalDetail from 'components/rental/rental-detail/RentalDetail';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import RentalSearchListing from 'components/rental/rental-listing/RentalSearchListing';
+import { RentalCreate } from 'components/rental/rental-create/RentalCreate';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import 'App.css';
 import Login from './components/login/Login';
@@ -30,11 +32,15 @@ class App extends Component {
           <div className="App">
             <Header logout={this.logout}></Header>
             <div className='container'>
+              <Switch>
               <Route exact path="/" render={() => <Redirect to='/rentals'></Redirect>}></Route>
               <Route exact path="/rentals" component={RentalListing}></Route>
+              <ProtectedRoute exact path="/rentals/new" component={RentalCreate}></ProtectedRoute>
               <ProtectedRoute exact path="/rentals/:id" component={RentalDetail}></ProtectedRoute>
               <Route exact path="/login" component={Login}></Route>
               <LoggedInRoute exact path="/register" component={Register}></LoggedInRoute>
+              <Route exact path="/rentals/:city/homes" component={RentalSearchListing}></Route>
+              </Switch>
             </div>
           </div>
         </BrowserRouter>
