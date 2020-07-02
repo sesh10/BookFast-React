@@ -25,10 +25,10 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/bookings', bookRoutes);
 
 if (process.env.NODE_ENV === 'production') {
-    const appPath = path.join(__dirname, '..', 'dist/first-cli');
+    const appPath = path.join(__dirname, '..', 'build');
     app.use(express.static(appPath));
 
-    app.use('*', function (req, res) {
+    app.get('/*', function (req, res) {
         res.sendFile(path.resolve(appPath, 'index.html'));
     });
 }

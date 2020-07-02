@@ -17,7 +17,7 @@ class Header extends React.Component {
 
     renderAuthButtons(isAuth) {
         if (isAuth) {
-            return <a className='nav-item nav-link active clickable' onClick={this.handleLogout}>Logout</a>;
+            return <a className='nav-item nav-link active clickable' href='/#' onClick={this.handleLogout}>Logout</a>;
         }
         return (
             <React.Fragment>
@@ -31,7 +31,7 @@ class Header extends React.Component {
         if (isAuth) {
             return (
                 <div className="nav-item dropdown">
-                    <a className="nav-link nav-item dropdown-toggle clickable" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a className="nav-link nav-item dropdown-toggle clickable" href="/#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Owner Section
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -58,7 +58,7 @@ class Header extends React.Component {
                     </button>
                     <div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
                         <div className='navbar-nav ml-auto'>
-                            {isAuth && <a className='nav-item nav-link active'>{username}</a>}
+                            {isAuth && <a href="/#" className='nav-item nav-link active'>{username}</a>}
                             {this.renderOwnerSection(isAuth)}
 
                             {this.renderAuthButtons(isAuth)}
